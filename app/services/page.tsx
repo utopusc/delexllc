@@ -17,7 +17,7 @@ export default function ServicesPage() {
         "Secure loading and unloading",
         "Real-time GPS tracking",
       ],
-      image: "/images/1.jpg",
+      image: "/images/main.jpg",
     },
     {
       title: "Refrigerated Freight",
@@ -68,7 +68,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -293,20 +293,20 @@ export default function ServicesPage() {
               Request a free rate quote and discover how our family operation can
               streamline your shipping.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/quote">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/quote" className="w-full sm:w-auto">
                 <ShimmerButton
                   shimmerColor="#ffffff"
                   shimmerSize="0.1em"
                   shimmerDuration="2s"
                   background="rgba(255, 255, 255, 0.1)"
-                  className="text-lg px-10 py-4 border-2 border-white"
+                  className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-3 sm:py-4 border-2 border-white"
                 >
                   Get a Quote
                 </ShimmerButton>
               </Link>
-              <Link href="/contact">
-                <button className="text-lg px-10 py-4 bg-white text-blue-600 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 font-semibold">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <button className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-3 sm:py-4 bg-white text-blue-600 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 font-semibold">
                   Contact Us
                 </button>
               </Link>

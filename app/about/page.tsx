@@ -7,7 +7,7 @@ import ShimmerButton from "@/components/ui/shimmer-button";
 
 export default function AboutPage() {
   return (
-    <div className="pt-16">
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,8 +71,8 @@ export default function AboutPage() {
               className="relative rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="/images/1.jpg"
-                alt="Delex LLC fleet at warehouse"
+                src="/images/main.jpg"
+                alt="Delex LLC professional trucking fleet"
                 width={800}
                 height={600}
                 className="w-full object-cover"

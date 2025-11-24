@@ -78,49 +78,49 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-white">
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+          <div className="inline-block mb-3 sm:mb-4">
+            <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm font-semibold">
               Why Choose Us
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
             Experience the Difference
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             A family-owned trucking company that puts your needs first with
             professional service and reliable delivery.
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="group relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-200 hover:border-transparent hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              className="group relative bg-gradient-to-br from-gray-50 to-white p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-gray-200 hover:border-transparent hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
-              <div className={`relative w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${feature.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center text-white mb-4 sm:mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
                 {feature.icon}
               </div>
-              <h3 className="relative text-xl font-bold text-gray-900 mb-3">
+              <h3 className="relative text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
                 {feature.title}
               </h3>
-              <p className="relative text-gray-700 leading-relaxed">
+              <p className="relative text-sm sm:text-base text-gray-700 leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
@@ -132,40 +132,40 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid md:grid-cols-2 gap-6 mb-12"
+          className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12"
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl group">
             <Image
               src="/images/2.jpeg"
               alt="Delex LLC trucks at warehouse"
               width={800}
               height={600}
-              className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-56 sm:h-64 md:h-80 lg:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <h3 className="text-2xl font-bold mb-2">Modern Fleet</h3>
-                <p className="text-gray-200">
+              <div className="p-4 sm:p-6 md:p-8 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">Modern Fleet</h3>
+                <p className="text-sm sm:text-base text-gray-200">
                   State-of-the-art trucks and equipment
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl group">
             <Image
               src="/images/5.jpeg"
               alt="Delex LLC professional operations"
               width={800}
               height={600}
-              className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-56 sm:h-64 md:h-80 lg:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
-              <div className="p-8 text-white">
-                <h3 className="text-2xl font-bold mb-2">
+              <div className="p-4 sm:p-6 md:p-8 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
                   Professional Operations
                 </h3>
-                <p className="text-gray-200">
+                <p className="text-sm sm:text-base text-gray-200">
                   Advanced tracking and management systems
                 </p>
               </div>
@@ -178,20 +178,20 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-center"
+          className="text-center px-4"
         >
-          <Link href="/quote">
+          <Link href="/quote" className="inline-block w-full sm:w-auto">
             <ShimmerButton
               shimmerColor="#3b82f6"
               shimmerSize="0.1em"
               shimmerDuration="2s"
               background="linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)"
-              className="text-lg px-10 py-4 font-semibold"
+              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 font-semibold"
             >
               Get a Free Rate Quote
             </ShimmerButton>
           </Link>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600">
             Join hundreds of satisfied customers who trust Delex LLC
           </p>
         </motion.div>

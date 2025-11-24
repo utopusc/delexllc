@@ -77,7 +77,7 @@ export default function QuotePage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen pt-16 flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -120,7 +120,7 @@ export default function QuotePage() {
   }
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen bg-white">
       {/* Hero Section with Background */}
       <div className="relative py-16 mb-8">
         <div className="absolute inset-0">
@@ -150,7 +150,7 @@ export default function QuotePage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-blue-50 to-gray-100 pb-20">
+      <div className="bg-white pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.form

@@ -78,8 +78,8 @@ export default function Navigation() {
     >
       <motion.div
         className={cn(
-          "mx-4 md:mx-0 mt-4",
-          hasScrolled ? "mt-6" : "mt-4",
+          "mx-4 md:mx-0 mt-2",
+          hasScrolled ? "mt-3" : "mt-2",
         )}
         initial={{ width: INITIAL_WIDTH }}
         animate={{ width: hasScrolled ? MAX_WIDTH : INITIAL_WIDTH }}
@@ -89,8 +89,8 @@ export default function Navigation() {
           className={cn(
             "mx-auto max-w-7xl rounded-2xl transition-all duration-300 xl:px-0",
             hasScrolled
-              ? "px-2 backdrop-blur-xl bg-white shadow-xl border border-gray-300"
-              : "px-7 backdrop-blur-xl bg-white/95 shadow-lg border border-gray-200",
+              ? "px-2 backdrop-blur-xl bg-white/90 shadow-xl border border-gray-300"
+              : "px-7 backdrop-blur-xl bg-white/80 shadow-lg border border-gray-200",
           )}
         >
           <div className="flex h-[56px] items-center justify-between p-4">
@@ -131,13 +131,14 @@ export default function Navigation() {
                 </Link>
               </div>
               <button
-                className="md:hidden size-8 rounded-md cursor-pointer flex items-center justify-center"
+                className="md:hidden min-w-[44px] min-h-[44px] rounded-lg cursor-pointer flex items-center justify-center hover:bg-gray-100 active:bg-gray-200 transition-colors"
                 onClick={toggleDrawer}
+                aria-label={isDrawerOpen ? "Close menu" : "Open menu"}
               >
                 {isDrawerOpen ? (
-                  <X className="size-5" />
+                  <X className="size-6 text-gray-900" strokeWidth={2.5} />
                 ) : (
-                  <Menu className="size-5" />
+                  <Menu className="size-6 text-gray-900" strokeWidth={2.5} />
                 )}
               </button>
             </div>
