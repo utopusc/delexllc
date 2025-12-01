@@ -110,7 +110,7 @@ export default function Footer() {
               </svg>
               <div>
                 <p className="text-white font-medium text-sm sm:text-base">Phone</p>
-                <p className="text-gray-400 text-sm sm:text-base">(302) 507-2525</p>
+                <a href="tel:+13025072525" className="text-gray-400 text-sm sm:text-base hover:text-blue-400 transition-colors">(302) 507-2525</a>
               </div>
             </div>
 
@@ -130,7 +130,7 @@ export default function Footer() {
               </svg>
               <div>
                 <p className="text-white font-medium text-sm sm:text-base">Email</p>
-                <p className="text-gray-400 text-sm sm:text-base break-all">info@delexllc.com</p>
+                <a href="mailto:info@delexllc.com" className="text-gray-400 text-sm sm:text-base break-all hover:text-blue-400 transition-colors">info@delexllc.com</a>
               </div>
             </div>
 

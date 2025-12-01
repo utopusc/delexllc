@@ -270,7 +270,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">info@delexllc.com</p>
+                    <a href="mailto:info@delexllc.com" className="text-gray-600 hover:text-blue-600 transition-colors">info@delexllc.com</a>
                   </div>
                 </div>
 
@@ -292,7 +292,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-600">(302) 507-2525</p>
+                    <a href="tel:+13025072525" className="text-gray-600 hover:text-blue-600 transition-colors">(302) 507-2525</a>
                     <p className="text-sm text-gray-500">Mon-Fri, 8AM-6PM EST</p>
                   </div>
                 </div>
