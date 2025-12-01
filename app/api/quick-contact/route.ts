@@ -16,93 +16,131 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email notification to info@delexllc.com
-    const emailPromise = resend.emails.send({
-      from: "Delex LLC Website <noreply@delexllc.com>",
+    // Sanitize inputs to prevent spam trigger words
+    const sanitizedName = name.trim();
+    const sanitizedEmail = email.trim().toLowerCase();
+    const sanitizedPhone = phone ? phone.trim() : null;
+    const sanitizedMessage = message.trim();
+
+    // Plain text version for better deliverability
+    const plainText = `
+Website Inquiry from ${sanitizedName}
+
+Contact Information:
+- Name: ${sanitizedName}
+- Email: ${sanitizedEmail}
+${sanitizedPhone ? `- Phone: ${sanitizedPhone}` : ""}
+
+Message:
+${sanitizedMessage}
+
+---
+This message was sent from the Delex LLC website contact form.
+Delex LLC | Professional Trucking Services
+Website: https://delexllc.com
+    `.trim();
+
+    // Send email notification
+    const { data, error } = await resend.emails.send({
+      from: "Delex LLC <notifications@delexllc.com>",
       to: ["info@delexllc.com"],
-      replyTo: email,
-      subject: `Quick Contact: ${name}`,
+      replyTo: sanitizedEmail,
+      subject: `Website Inquiry from ${sanitizedName}`,
+      text: plainText,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 20px; border-radius: 12px 12px 0 0;">
-            <h2 style="color: white; margin: 0;">New Quick Contact Message</h2>
-          </div>
-          <div style="background: #f9fafb; padding: 24px; border-radius: 0 0 12px 12px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  <strong style="color: #374151;">Name:</strong>
-                </td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb; color: #111827;">
-                  ${name}
-                </td>
-              </tr>
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  <strong style="color: #374151;">Email:</strong>
-                </td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  <a href="mailto:${email}" style="color: #2563eb;">${email}</a>
-                </td>
-              </tr>
-              ${phone ? `
-              <tr>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  <strong style="color: #374151;">Phone:</strong>
-                </td>
-                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  <a href="tel:${phone}" style="color: #2563eb;">${phone}</a>
-                </td>
-              </tr>
-              ` : ""}
-              <tr>
-                <td colspan="2" style="padding: 16px 0;">
-                  <strong style="color: #374151;">Message:</strong>
-                  <p style="margin: 8px 0 0 0; color: #111827; line-height: 1.6;">
-                    ${message.replace(/\n/g, "<br>")}
-                  </p>
-                </td>
-              </tr>
-            </table>
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-              <p style="color: #6b7280; font-size: 14px; margin: 0;">
-                Sent from Quick Contact Form on delexllc.com
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f4f4f5;">
+  <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; background-color: #f4f4f5;">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 32px 40px; text-align: center;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600;">Website Inquiry</h1>
+              <p style="margin: 8px 0 0 0; color: #bfdbfe; font-size: 14px;">You have received a message from your website</p>
+            </td>
+          </tr>
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              <!-- Contact Info Card -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%; background-color: #f8fafc; border-radius: 8px; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 24px;">
+                    <h2 style="margin: 0 0 16px 0; color: #1e293b; font-size: 16px; font-weight: 600;">Contact Information</h2>
+
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; width: 80px;">Name:</td>
+                        <td style="padding: 8px 0; color: #1e293b; font-size: 14px; font-weight: 500;">${sanitizedName}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Email:</td>
+                        <td style="padding: 8px 0;">
+                          <a href="mailto:${sanitizedEmail}" style="color: #2563eb; font-size: 14px; text-decoration: none;">${sanitizedEmail}</a>
+                        </td>
+                      </tr>
+                      ${sanitizedPhone ? `
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Phone:</td>
+                        <td style="padding: 8px 0;">
+                          <a href="tel:${sanitizedPhone}" style="color: #2563eb; font-size: 14px; text-decoration: none;">${sanitizedPhone}</a>
+                        </td>
+                      </tr>
+                      ` : ""}
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Message -->
+              <h2 style="margin: 0 0 12px 0; color: #1e293b; font-size: 16px; font-weight: 600;">Message</h2>
+              <p style="margin: 0; color: #475569; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${sanitizedMessage.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+
+              <!-- Reply Button -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
+                <tr>
+                  <td style="background-color: #2563eb; border-radius: 8px;">
+                    <a href="mailto:${sanitizedEmail}?subject=Re: Your inquiry to Delex LLC" style="display: inline-block; padding: 14px 28px; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none;">Reply to ${sanitizedName}</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 24px 40px; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; color: #64748b; font-size: 13px; text-align: center;">
+                This message was sent from the contact form on <a href="https://delexllc.com" style="color: #2563eb; text-decoration: none;">delexllc.com</a>
               </p>
-            </div>
-          </div>
-        </div>
+              <p style="margin: 8px 0 0 0; color: #94a3b8; font-size: 12px; text-align: center;">
+                Delex LLC | Professional Trucking Services | (302) 507-2525
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
       `,
     });
 
-    // Send SMS notification via T-Mobile email-to-SMS gateway
-    // Format: 10-digit number @ tmomail.net
-    const smsPromise = resend.emails.send({
-      from: "Delex LLC <noreply@delexllc.com>",
-      to: ["3025072525@tmomail.net"],
-      subject: "New Lead",
-      text: `New Contact!\n${name}\n${email}\n${phone || "No phone"}\nMsg: ${message.slice(0, 100)}${message.length > 100 ? "..." : ""}`,
-    });
-
-    // Wait for both to complete
-    const [emailResult, smsResult] = await Promise.all([emailPromise, smsPromise]);
-
-    if (emailResult.error) {
-      console.error("Email send error:", emailResult.error);
-      return NextResponse.json({ error: emailResult.error.message }, { status: 500 });
+    if (error) {
+      console.error("Email send error:", error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    if (smsResult.error) {
-      // Log SMS error but don't fail the request - email was sent successfully
-      console.error("SMS send error:", smsResult.error);
-    }
-
-    return NextResponse.json({
-      success: true,
-      data: {
-        email: emailResult.data,
-        sms: smsResult.data
-      }
-    }, { status: 200 });
+    return NextResponse.json({ success: true, data }, { status: 200 });
 
   } catch (error) {
     console.error("Quick contact error:", error);
