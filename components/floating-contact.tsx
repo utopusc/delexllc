@@ -133,10 +133,11 @@ export default function FloatingContact() {
         whileHover="hover"
         whileTap="tap"
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg flex items-center justify-center cursor-pointer transition-shadow duration-300 ${isOpen ? "opacity-0 pointer-events-none" : ""}`}
+        className={`fixed bottom-6 right-6 z-50 h-12 sm:h-14 px-4 sm:px-5 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg flex items-center justify-center gap-2 sm:gap-3 cursor-pointer transition-shadow duration-300 ${isOpen ? "opacity-0 pointer-events-none" : ""}`}
         aria-label="Open contact form"
       >
-        <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+        <span className="font-semibold text-sm sm:text-base whitespace-nowrap">Instant Message</span>
 
         {/* Pulse animation ring */}
         <span className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-25" />
