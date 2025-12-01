@@ -1,6 +1,3 @@
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
 interface ContactNotification {
   name: string;
   email: string;
@@ -11,8 +8,14 @@ interface ContactNotification {
 }
 
 export async function sendTelegramNotification(data: ContactNotification): Promise<boolean> {
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.warn("Telegram credentials not configured");
+    console.warn("Telegram credentials not configured:", {
+      hasToken: !!TELEGRAM_BOT_TOKEN,
+      hasChatId: !!TELEGRAM_CHAT_ID
+    });
     return false;
   }
 
