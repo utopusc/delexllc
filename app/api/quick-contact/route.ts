@@ -141,14 +141,18 @@ Website: https://delexllc.com
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // Send Telegram notification (non-blocking)
-    sendTelegramNotification({
-      name: sanitizedName,
-      email: sanitizedEmail,
-      phone: sanitizedPhone,
-      message: sanitizedMessage,
-      source: "quick-contact",
-    }).catch((err) => console.error("Telegram error:", err));
+    // Send Telegram notification
+    try {
+      await sendTelegramNotification({
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone,
+        message: sanitizedMessage,
+        source: "quick-contact",
+      });
+    } catch (err) {
+      console.error("Telegram error:", err);
+    }
 
     return NextResponse.json({ success: true, data }, { status: 200 });
 
