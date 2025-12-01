@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { sendTelegramNotification } from "@/lib/telegram";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -146,6 +147,16 @@ Website: https://delexllc.com
       console.error("Resend error:", error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
+    // Send Telegram notification (non-blocking)
+    sendTelegramNotification({
+      name: sanitizedName,
+      email: sanitizedEmail,
+      phone: sanitizedPhone,
+      company: sanitizedCompany,
+      message: sanitizedMessage,
+      source: "contact-form",
+    }).catch((err) => console.error("Telegram error:", err));
 
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error) {
