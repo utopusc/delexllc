@@ -34,13 +34,18 @@ const documents = [
     category: "Insurance",
   },
   {
-    name: "All Vehicles Insurance Cards 2025-2026",
-    filename: "all vehicles 2025-2026 nsurance cards.PDF",
+    name: "Proof of Insurance",
+    filename: "proof of insurance.pdf",
     category: "Insurance",
   },
   {
     name: "MC Authority Copy",
     filename: "mc copy.pdf",
+    category: "Authority",
+  },
+  {
+    name: "W-9 Form",
+    filename: "Po box w-9.pdf",
     category: "Authority",
   },
 ];
